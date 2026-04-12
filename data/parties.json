@@ -1,0 +1,15 @@
+[
+  {
+    "id": "1f60c65a-f53c-4acb-b0ad-a08fa7b242f2",
+    "movieId": "10",
+    "hostId": "692c204d-fc1e-422b-aa57-c396275c2c7f",
+    "hostName": "prabin",
+    "createdAt": "2026-04-11T18:09:57.874Z",
+    "participants": [
+      {
+        "id": "692c204d-fc1e-422b-aa57-c396275c2c7f",
+        "name": "prabin"
+      }
+    ]
+  }
+]
