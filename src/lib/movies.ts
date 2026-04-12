@@ -24,7 +24,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
     year: 2024,
     duration: "2h 28m",
     rating: "PG-13",
@@ -42,7 +42,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
     year: 2024,
     duration: "2h 12m",
     rating: "R",
@@ -60,7 +60,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1518882570532-3a3e5fc39dfe?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "https://www.w3schools.com/html/mov_bbb.mp4",
     year: 2023,
     duration: "1h 54m",
     rating: "PG",
@@ -78,7 +78,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
     year: 2024,
     duration: "2h 05m",
     rating: "R",
@@ -96,7 +96,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
     year: 2023,
     duration: "1h 48m",
     rating: "PG-13",
@@ -114,7 +114,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "https://www.w3schools.com/html/mov_bbb.mp4",
     year: 2024,
     duration: "1h 52m",
     rating: "PG-13",
@@ -132,7 +132,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      "https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
     year: 2023,
     duration: "2h 15m",
     rating: "PG-13",
@@ -150,7 +150,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1517732306149-e8f829eb588a?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+      "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
     year: 2024,
     duration: "2h 20m",
     rating: "R",
@@ -168,7 +168,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+      "https://www.w3schools.com/html/mov_bbb.mp4",
     year: 2024,
     duration: "1h 58m",
     rating: "PG-13",
@@ -186,7 +186,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+      "https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
     year: 2024,
     duration: "2h 01m",
     rating: "PG-13",
@@ -204,7 +204,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
+      "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
     year: 2023,
     duration: "2h 35m",
     rating: "PG-13",
@@ -222,7 +222,7 @@ export const movies: Movie[] = [
     backdrop:
       "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?w=1920&h=1080&fit=crop",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+      "https://www.w3schools.com/html/mov_bbb.mp4",
     year: 2024,
     duration: "1h 45m",
     rating: "R",
