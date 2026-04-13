@@ -6,6 +6,7 @@ import { useAuth } from "@/components/AuthContext";
 import Navbar from "@/components/Navbar";
 import HeroBanner from "@/components/HeroBanner";
 import MovieRow from "@/components/MovieRow";
+import ChatBot from "@/components/ChatBot";
 import { movies, genres, getMoviesByGenre } from "@/lib/movies";
 
 export default function BrowsePage() {
@@ -52,6 +53,8 @@ export default function BrowsePage() {
           <p>A Netflix + Prime inspired streaming experience</p>
         </div>
       </footer>
+
+      <ChatBot />
     </div>
   );
 }
