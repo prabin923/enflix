@@ -21,9 +21,9 @@ export default function BrowsePage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-[#141414] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
         <div className="animate-pulse">
-          <span className="text-5xl font-black tracking-tighter text-red-600">
+          <span className="text-5xl font-black tracking-[-0.04em] text-transparent bg-clip-text bg-gradient-to-b from-[#ff1a1a] to-[#b20710]">
             ENFLIX
           </span>
         </div>
@@ -34,23 +34,32 @@ export default function BrowsePage() {
   const featuredMovie = movies[0];
 
   return (
-    <div className="min-h-screen bg-[#141414]">
+    <div className="min-h-screen bg-[#0a0a0a]">
       <Navbar />
       <HeroBanner movie={featuredMovie} />
 
-      <div className="-mt-20 relative z-10 pb-20">
+      <div className="-mt-24 relative z-10 pb-20">
         {genres.map((genre) => {
           const genreMovies = getMoviesByGenre(genre);
           return (
-            <MovieRow key={genre} title={genre} movies={genreMovies} />
+            <MovieRow
+              key={genre}
+              title={genre}
+              movies={genreMovies}
+              isTop10={genre === "Top 10 on Enflix"}
+            />
           );
         })}
       </div>
 
-      <footer className="bg-[#141414] border-t border-gray-800 py-8 px-4 sm:px-8 lg:px-12">
-        <div className="max-w-6xl mx-auto text-center text-gray-500 text-sm">
-          <p className="mb-2">ENFLIX - Watch Movies Together</p>
-          <p>A Netflix + Prime inspired streaming experience</p>
+      <footer className="bg-[#0a0a0a] border-t border-white/5 py-12 px-4 sm:px-8 lg:px-12">
+        <div className="max-w-6xl mx-auto text-center">
+          <span className="text-xl font-black tracking-[-0.04em] text-transparent bg-clip-text bg-gradient-to-b from-[#ff1a1a]/60 to-[#b20710]/60">
+            ENFLIX
+          </span>
+          <p className="text-gray-600 text-sm mt-2">
+            Stream movies and watch together with friends
+          </p>
         </div>
       </footer>
 
