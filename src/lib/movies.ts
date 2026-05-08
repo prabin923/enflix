@@ -15,7 +15,7 @@ export interface Movie {
   top10?: number;
 }
 
-export const movies: Movie[] = [
+export const localMovies: Movie[] = [
   {
     id: "1",
     title: "Interstellar Horizon",
@@ -332,7 +332,7 @@ export const movies: Movie[] = [
   },
 ];
 
-export const genres = [
+export const defaultGenres = [
   "Trending Now",
   "Top 10 on Enflix",
   "Sci-Fi",
@@ -348,16 +348,40 @@ export const genres = [
   "Comedy",
 ];
 
+export const movies = localMovies;
+export const genres = defaultGenres;
+
 export function getMoviesByGenre(genre: string): Movie[] {
+  return getMoviesByGenreFromList(localMovies, genre);
+}
+
+export function getMoviesByGenreFromList(movieList: Movie[], genre: string): Movie[] {
   if (genre === "Trending Now") {
-    return [...movies].sort((a, b) => b.match - a.match).slice(0, 10);
+    return [...movieList].sort((a, b) => b.match - a.match).slice(0, 10);
   }
   if (genre === "Top 10 on Enflix") {
-    return movies.filter((m) => m.top10).sort((a, b) => (a.top10 ?? 99) - (b.top10 ?? 99));
+    return movieList
+      .filter((m) => m.top10)
+      .sort((a, b) => (a.top10 ?? 99) - (b.top10 ?? 99));
   }
-  return movies.filter((m) => m.genre.includes(genre));
+  return movieList.filter((m) => m.genre.includes(genre));
 }
 
 export function getMovieById(id: string): Movie | undefined {
-  return movies.find((m) => m.id === id);
+  return getMovieByIdFromList(localMovies, id);
+}
+
+export function getMovieByIdFromList(movieList: Movie[], id: string): Movie | undefined {
+  return movieList.find((m) => m.id === id);
+}
+
+export function buildGenresFromMovies(movieList: Movie[]): string[] {
+  const genreSet = new Set<string>();
+  for (const movie of movieList) {
+    for (const genre of movie.genre) {
+      genreSet.add(genre);
+    }
+  }
+
+  return ["Trending Now", "Top 10 on Enflix", ...Array.from(genreSet).sort()];
 }

@@ -5,13 +5,14 @@ import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthContext";
 import Navbar from "@/components/Navbar";
-import { getMovieById, movies, Movie } from "@/lib/movies";
+import { Movie } from "@/lib/movies";
 
 export default function MovieDetailPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
   const params = useParams();
   const [movie, setMovie] = useState<Movie | null>(null);
+  const [catalogMovies, setCatalogMovies] = useState<Movie[]>([]);
   const [creatingParty, setCreatingParty] = useState(false);
 
   useEffect(() => {
@@ -21,9 +22,32 @@ export default function MovieDetailPage() {
   }, [user, loading, router]);
 
   useEffect(() => {
-    const id = params.id as string;
-    const found = getMovieById(id);
-    if (found) setMovie(found);
+    const loadMovie = async () => {
+      const id = params.id as string;
+      try {
+        const [movieResponse, catalogResponse] = await Promise.all([
+          fetch(`/api/movies/${id}`, { cache: "no-store" }),
+          fetch("/api/movies", { cache: "no-store" }),
+        ]);
+
+        if (movieResponse.ok) {
+          const movieData = (await movieResponse.json()) as { movie: Movie };
+          setMovie(movieData.movie);
+        } else {
+          setMovie(null);
+        }
+
+        if (catalogResponse.ok) {
+          const catalogData = (await catalogResponse.json()) as { movies: Movie[] };
+          setCatalogMovies(catalogData.movies || []);
+        }
+      } catch (error) {
+        console.error("Failed to load movie page:", error);
+        setMovie(null);
+      }
+    };
+
+    loadMovie();
   }, [params.id]);
 
   const handleCreateParty = async () => {
@@ -52,7 +76,7 @@ export default function MovieDetailPage() {
     );
   }
 
-  const similarMovies = movies
+  const similarMovies = catalogMovies
     .filter(
       (m) =>
         m.id !== movie.id && m.genre.some((g) => movie.genre.includes(g))

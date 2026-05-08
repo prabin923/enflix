@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthContext";
-import { getMovieById, Movie } from "@/lib/movies";
+import { Movie } from "@/lib/movies";
 
 interface Party {
   id: string;
@@ -50,11 +50,16 @@ export default function PartyPage() {
       body: JSON.stringify({ partyId }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         if (data.party) {
           setParty(data.party);
-          const found = getMovieById(data.party.movieId);
-          if (found) setMovie(found);
+          const movieResponse = await fetch(`/api/movies/${data.party.movieId}`, {
+            cache: "no-store",
+          });
+          if (movieResponse.ok) {
+            const movieData = (await movieResponse.json()) as { movie: Movie };
+            setMovie(movieData.movie);
+          }
         }
       });
 

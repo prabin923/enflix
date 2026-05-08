@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthContext";
-import { getMovieById, Movie } from "@/lib/movies";
+import { Movie } from "@/lib/movies";
 
 export default function WatchPage() {
   const { user, loading } = useAuth();
@@ -20,9 +20,23 @@ export default function WatchPage() {
   }, [user, loading, router]);
 
   useEffect(() => {
-    const id = params.id as string;
-    const found = getMovieById(id);
-    if (found) setMovie(found);
+    const loadMovie = async () => {
+      const id = params.id as string;
+      try {
+        const response = await fetch(`/api/movies/${id}`, { cache: "no-store" });
+        if (!response.ok) {
+          setMovie(null);
+          return;
+        }
+        const data = (await response.json()) as { movie: Movie };
+        setMovie(data.movie);
+      } catch (error) {
+        console.error("Failed to load movie:", error);
+        setMovie(null);
+      }
+    };
+
+    loadMovie();
   }, [params.id]);
 
   useEffect(() => {

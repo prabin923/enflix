@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { verifyToken } from "@/lib/auth";
-import { movies } from "@/lib/movies";
+import { getCatalogMovies } from "@/lib/cineby";
+import { Movie } from "@/lib/movies";
 
-const movieCatalog = movies
-  .map(
-    (m) =>
-      `[ID:${m.id}] "${m.title}" (${m.year}) — ${m.genre.join(", ")} — ${m.rating} — ${m.match}% match — ${m.description}`
-  )
-  .join("\n");
+function buildSystemPrompt(movies: Movie[]): string {
+  const movieCatalog = movies
+    .map(
+      (m) =>
+        `[ID:${m.id}] "${m.title}" (${m.year}) — ${m.genre.join(", ")} — ${m.rating} — ${m.match}% match — ${m.description}`
+    )
+    .join("\n");
 
-const systemPrompt = `You are Enflix AI, a friendly movie recommendation assistant for the Enflix streaming platform. You help users find the perfect movie to watch.
+  return `You are Enflix AI, a friendly movie recommendation assistant for the Enflix streaming platform. You help users find the perfect movie to watch.
 
 Here is the complete movie catalog available on Enflix:
 
@@ -25,6 +27,7 @@ Your job:
 - If asked about movies not in the catalog, let them know what's available that's similar
 - You can ONLY recommend movies from the catalog above — do not make up movies
 - When recommending, include the movie ID in this format so the UI can create links: [MOVIE:id] (e.g. [MOVIE:1])`;
+}
 
 export async function POST(req: NextRequest) {
   const token = req.cookies.get("enflix-token")?.value;
@@ -47,6 +50,8 @@ export async function POST(req: NextRequest) {
 
   try {
     const { messages } = await req.json();
+    const movies = await getCatalogMovies();
+    const systemPrompt = buildSystemPrompt(movies);
 
     const client = new Anthropic({ apiKey });
 
