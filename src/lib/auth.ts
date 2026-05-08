@@ -4,7 +4,13 @@ import fs from "fs";
 import path from "path";
 
 const JWT_SECRET = process.env.JWT_SECRET || "enflix-super-secret-key-change-in-production";
-const USERS_FILE = path.join(process.cwd(), "data", "users.json");
+const DATA_DIR =
+  process.env.DATA_DIR ||
+  process.env.ENFLIX_DATA_DIR ||
+  (process.env.NODE_ENV === "production"
+    ? "/tmp/enflix-data"
+    : path.join(process.cwd(), "data"));
+const USERS_FILE = path.join(DATA_DIR, "users.json");
 
 export interface User {
   id: string;
@@ -24,6 +30,10 @@ export interface SafeUser {
 
 function getUsers(): User[] {
   try {
+    const dir = path.dirname(USERS_FILE);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
     if (!fs.existsSync(USERS_FILE)) {
       fs.writeFileSync(USERS_FILE, "[]");
       return [];

@@ -1,7 +1,13 @@
 import fs from "fs";
 import path from "path";
 
-const PARTIES_FILE = path.join(process.cwd(), "data", "parties.json");
+const DATA_DIR =
+  process.env.DATA_DIR ||
+  process.env.ENFLIX_DATA_DIR ||
+  (process.env.NODE_ENV === "production"
+    ? "/tmp/enflix-data"
+    : path.join(process.cwd(), "data"));
+const PARTIES_FILE = path.join(DATA_DIR, "parties.json");
 
 export interface WatchParty {
   id: string;
@@ -14,6 +20,10 @@ export interface WatchParty {
 
 function getParties(): WatchParty[] {
   try {
+    const dir = path.dirname(PARTIES_FILE);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
     if (!fs.existsSync(PARTIES_FILE)) {
       fs.writeFileSync(PARTIES_FILE, "[]");
       return [];
